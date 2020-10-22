@@ -15,8 +15,8 @@ void *step1 (void *arg) {
 	zmq::socket_t sender (*context, ZMQ_PAIR);
 	sender.connect("inproc://step2");
 
-	s_send (sender, "");
-
+//	s_send (sender, ""); this is give error: call of overloaded 
+	s_send(sender,std::string(""));
 	return (NULL);
 }
 
@@ -39,8 +39,8 @@ void *step2 (void *arg) {
     //  Signal downstream to step 3
     zmq::socket_t sender (*context, ZMQ_PAIR);
     sender.connect("inproc://step3");
-    s_send (sender, "");
-
+//    s_send (sender, "");
+    s_send(sender,std::string(""));
     return (NULL);
 }
 
